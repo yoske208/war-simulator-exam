@@ -1,6 +1,7 @@
 import express,{IRouter,Request,Response} from "express"
-import { adduser, alluser, deleteAll, deleteUser, findUser, updateUser } from "../Services/UserServic"
-import User, { IUser } from "../Modules/UserModel"
+import { adduser, alluser, deleteAll, deleteUser, findUser, updateUser } from "../Services/MissilesServic"
+import Missile, { IMissiles } from "../Modules/MissiliesModel"
+
 const router : IRouter = express.Router()
 router.get("/",async (req : Request, res : Response) : Promise<void> => {
     try {
@@ -12,6 +13,7 @@ router.get("/",async (req : Request, res : Response) : Promise<void> => {
         console.error(error.message)
         
     }
+
 })
 
 router.get("/:id",async(req:Request,res :Response) : Promise<void> => {

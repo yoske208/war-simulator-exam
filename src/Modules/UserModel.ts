@@ -5,7 +5,7 @@ export interface IUser extends Document {
     username:string
     password : string
     organization:string
-    Zone?:true
+    zone?:string
 }
 
 const UserSchema : Schema = new Schema ({
@@ -21,10 +21,10 @@ const UserSchema : Schema = new Schema ({
         type:String,
         required : true
     },
-    Zone:{
-        type:Boolean,
+    zone:{
+        type:String,
         required:true
     }
 })
 
-export default mongoose.model<IUser>("User",UserSchema)
+export default mongoose.model<IUser>("users",UserSchema)

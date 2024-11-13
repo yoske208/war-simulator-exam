@@ -1,6 +1,6 @@
 import mongoose ,  {Document,Schema} from "mongoose"
 
-export interface IUser extends Document {
+export interface IOrganization extends Document {
     _id:string,
     name:string
     resources :[{name:string,amount:number}]
@@ -33,4 +33,4 @@ budget:{
     
 })
 
-export default mongoose.model<IUser>("organization",UserSchema)
+export default mongoose.model<IOrganization>("organizations",UserSchema)

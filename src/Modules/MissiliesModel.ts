@@ -1,6 +1,6 @@
 import mongoose ,  {Document,Schema} from "mongoose"
 
-export interface IUser extends Document {
+export interface IMissiles extends Document {
     _id:string,
     name:string
     description : string
@@ -33,4 +33,4 @@ const UserSchema : Schema = new Schema ({
     }
 })
 
-export default mongoose.model<IUser>("missiles",UserSchema)
+export default mongoose.model<IMissiles>("missiles",UserSchema)

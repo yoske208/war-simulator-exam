@@ -1,8 +1,9 @@
-import User, {IUser} from "../Modules/UserModel"
+import Organization, {IOrganization} from "../Modules/OrganizationModel"
 
 const alluser = async () => {
     try {
-        const alluser = User.find()
+        const alluser = Organization.find()
+        console.log(alluser);
         
         return alluser
         
@@ -14,7 +15,7 @@ const alluser = async () => {
 
 const findUser = async (userId:string) => {
     try {
-        const user = await User.findById(userId)
+        const user = await Organization.findById(userId)
         if(!user){
             return console.log("nut find this user");
             
@@ -27,10 +28,10 @@ const findUser = async (userId:string) => {
     }
 }
 
-const deleteUser = async (userId:IUser) => {
+const deleteUser = async (userId:IOrganization) => {
     try {
         
-        const user = await User.findOneAndDelete(userId.id)
+        const user = await Organization.findOneAndDelete(userId.id)
         if(!user){
             throw new Error("user not find")
         }
@@ -45,17 +46,17 @@ const deleteUser = async (userId:IUser) => {
 
 const deleteAll = async () => {
     try {
-        const users = await User.deleteMany()
+        const users = await Organization.deleteMany()
     } catch (error) {
         throw new Error("error to find users")
         
     }
 }
 
-const updateUser = async (userData:IUser) => {
+const updateUser = async (userData:IOrganization) => {
     
     try {
-        const nueUser = await User.findOneAndUpdate(userData.id,userData,{new : true})
+        const nueUser = await Organization.findOneAndUpdate(userData.id,userData,{new : true})
        
         
         return await nueUser?.save()
@@ -65,9 +66,9 @@ const updateUser = async (userData:IUser) => {
     }
 }
 
-const adduser = async (userData:IUser) => {
+const adduser = async (userData:IOrganization) => {
     try {
-        const nueUser = new User(userData)
+        const nueUser = new Organization(userData)
         await nueUser.save()
         return nueUser
     } catch (error) {
