@@ -7,6 +7,7 @@ import Organization, {IOrganization} from "../Modules/OrganizationModel"
 interface IBuyDto {
     name:string,
     ganID:string,
+    org:string
 }
 
 interface LoginDTO {
@@ -31,10 +32,17 @@ interface LoginDTO {
 
 const buy = async (data:IBuyDto,req:Request,res:Response) : Promise<void>=>{
     try {
-    const user = req.params.id
-    const userById = await User.findById(user)
-    const gan = req.params.id
-    const ganById = await Missile.findById(gan)
+    const {userID,ganID,orgID} = req.body
+    const userById = await User.findOne({userID})
+    const ganById = await Missile.findOne({ganID})
+    const orgById = await Organization.findOne({orgID})
+
+
+    const neuOrg = await Organization.findOneAndUpdate(orgById?.resources.map((amount) => amount.amount + 1))
+    const neuBBudget = await Organization.findOneAndUpdate(orgById?.resources)
+
+
+
         
     } catch (error) {
         throw new Error("Failed to bay")
