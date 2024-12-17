@@ -5,8 +5,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npm i tsc",
-    "dev": "concurrently \"tsc -w\" \"nodemon.\"",
-    "start": "."
+    "start": "concurrently \"tsc -w\" \"nodemon.\""
   },
   "author": "",
   "license": "ISC",
