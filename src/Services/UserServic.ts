@@ -63,6 +63,7 @@ const updateUser = async (userData:IUser) => {
         throw new Error("error to edit user")
         
     }
+    
 }
 
 const adduser = async (userData:IUser) => {

@@ -24,7 +24,7 @@ const UserSchema : Schema = new Schema ({
         required : true
     },
     intercepts:{
-        type:Boolean,
+        type:[String],
         
     },
     price:{

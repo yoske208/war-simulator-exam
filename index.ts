@@ -2,8 +2,15 @@ import express, { Express } from "express";
 import "dotenv/config" 
 import router from "./src/Routers/UserRouter"
 import mongoose from "mongoose";
+import cors from "cors"
 
 const app:Express = express()
+
+app.use(cors({
+    origin: "http://localhost:5173",
+    credentials: true  
+})); 
+
 
 
 app.use(express.json())

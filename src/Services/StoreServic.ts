@@ -5,30 +5,31 @@ import Organization, {IOrganization} from "../Modules/OrganizationModel"
 
 
 interface IBuyDto {
-    name:string,
+    userId:string,
     ganID:string,
-    org:string
+    orgId:string
 }
 
 interface LoginDTO {
     _id:string,
-    isAdmin:boolean
 
 }
 
-// const login = async (user: userDTO , res:Response) => {
-//     try {
-//         const foundUser = await User.findOne({ name: user.name })
+const login = async (user: LoginDTO , res:Response) => {
+    try {
+        const foundUser = await User.findOne({ name: user._id })
         
-//         if (!foundUser) return  console.log ("User not found")
+        if (!foundUser) return  console.log ("User not found")
 
        
-//         return {foundUser};
+        return {foundUser};
 
-//     } catch (error) {
-//         throw new Error("Failed to login")
-//     }
-// }
+    } catch (error) {
+        throw new Error("Failed to login")
+    }
+}
+
+
 
 const buy = async (data:IBuyDto,req:Request,res:Response) : Promise<void>=>{
     try {
@@ -37,9 +38,12 @@ const buy = async (data:IBuyDto,req:Request,res:Response) : Promise<void>=>{
     const ganById = await Missile.findOne({ganID})
     const orgById = await Organization.findOne({orgID})
 
-
+    {inc :  { orgById?.budget} - { inc:{ganById}}}
+  
     const neuOrg = await Organization.findOneAndUpdate(orgById?.resources.map((amount) => amount.amount + 1))
-    const neuBBudget = await Organization.findOneAndUpdate(orgById?.resources)
+    // const neuBBudget = await Organization.findOneAndUpdate(orgById?.budget  ganById?.price())
+    
+    
 
 
 
@@ -73,7 +77,7 @@ const buy = async (data:IBuyDto,req:Request,res:Response) : Promise<void>=>{
 
 
 export {
-    // login,
+    login,
     // baying,
     buy
     
